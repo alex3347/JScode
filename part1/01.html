@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>控制DIV属性</title>
+</head>
+<style>
+    div{margin:0 auto;}
+    #btnBar{width:250px;height:30px;}
+    #divEdit{width:100px;height:100px;background-color: #4cae4c}
+</style>
+<script>
+    window.onload=function(){
+        var $=function(id){return document.getElementById(id);}
+        var divEdit=$("divEdit");
+        $("btnWidth").onclick=function(){
+            var divEditValue=divEdit.offsetWidth;
+            divEdit.style.width=divEditValue+20+"px";
+        }
+        $("btnHeight").onclick=function(){
+            var divEditValue=divEdit.offsetHeight;
+            divEdit.style.height=divEditValue+20+"px";
+        }
+        $("btnColor").onclick=function(){
+            divEdit.style.backgroundColor="#e4393c";
+        }
+        $("btnInvisible").onclick=function(){
+            divEdit.style.display="none";
+        }
+        $("btnReset").onclick=function(){
+            divEdit.style.cssText="";
+        }
+    }
+</script>
+<body>
+    <div id="btnBar">
+        <input id="btnWidth" type="button" value="变宽">
+        <input id="btnHeight" type="button" value="变高">
+        <input id="btnColor" type="button" value="变色">
+        <input id="btnInvisible" type="button" value="隐藏">
+        <input id="btnReset" type="button" value="重置">
+    </div>
+    <div id="divEdit"></div>
+</body>
+</html>

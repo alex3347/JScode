@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>点击变色</title>
+</head>
+<style>
+    div{width:300px; margin:20px auto;}
+    #colorArea{height:300px;}
+</style>
+<script>
+    window.onload=function(){
+        var $=function(id){return document.getElementById(id);}
+        var i=0;
+//        var j=0,k=0;
+        function randomColor(){
+            var colorStr=i.toString(16);
+            return "#"+"000000".substring(0,6-colorStr.length)+colorStr;
+//            return "#"+Math.floor(k).toString(16)+Math.floor(j).toString(16)+i.toString(16);
+        }
+        $("btn").onclick=function(){
+            setInterval(function(){
+                $("colorArea").style.backgroundColor=randomColor();
+                  i++;
+//                if(i<256){i++;}else{i=0;}
+//                if(j<256){j+=0.5;}else{j=0;}
+//                if(k<256){k+=0.1;}else{k=0;}
+            },30)
+        }
+    }
+</script>
+<body>
+    <div id="editArea">
+        <input id="btn" type="button" value="点击变色">
+    </div>
+    <div id="colorArea"></div>
+</body>
+</html>

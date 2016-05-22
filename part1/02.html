@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>网页更换皮肤</title>
+    <style>
+        body,ul,li{margin:0;padding:0;}
+        html,body{height:100%;color:white;}
+        .container{width:492px;margin:50px auto;}
+        .clear{clear:both;}
+        li{list-style-type:none;}
+        #skinBtn{width:110px;height:16px;margin-bottom: 16px;}
+        #skinBtn>li{width:8px;height:8px;margin-left:20px;float: left;}
+        #navBar>li{width:80px;height:25px;border:1px solid #fff;float: left;text-align: center;line-height:25px;}
+        #red{border:4px solid indianred;background:indianred;}
+        #blue{border:4px solid deepskyblue;background:deepskyblue;}
+        #black{border:4px solid black;background:black;}
+    </style>
+    <link rel="stylesheet" href="red.css">
+</head>
+<script>
+    window.onload=function(){
+        var $=function(id){return document.getElementById(id)}
+        var link=document.getElementsByTagName("link")[0];
+        $("red").onclick=function () {
+            link.href="red.css";
+        }
+        $("blue").onclick=function () {
+            link.href="blue.css";
+        }
+        $("black").onclick=function () {
+            link.href="black.css";
+        }
+    }
+</script>
+<body>
+<div class="container">
+    <ul id="skinBtn">
+        <li id="red"></li>
+        <li id="blue"></li>
+        <li id="black"></li>
+    </ul>
+    <div class="clear"></div>
+    <ul id="navBar">
+        <li>运营</li>
+        <li>教学</li>
+        <li>购物</li>
+        <li>论坛</li>
+        <li>素材</li>
+        <li>模板</li>
+    </ul>
+</div>
+</body>
+</html>

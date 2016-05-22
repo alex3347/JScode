@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>函数接收参数并弹出</title>
+</head>
+<style>
+    div{width:300px; margin:0 auto;}
+</style>
+<script>
+    window.onload=function(){
+        var $=function(id){return document.getElementById(id);}
+        $("btn").onclick=function(){
+            alert($("cityName").value);
+            alert($("cityProper").value);
+        }
+    }
+</script>
+<body>
+    <div id="editArea">
+        <input id="cityName" type="text" value="上海市">
+        <input id="cityProper" type="text" value="浦东新区">
+        <input id="btn" type="button" value="传参">
+    </div>
+</body>
+</html>
