@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>通过传递参数，改变DIV的属性</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    #touchArea{width:405px;margin:10px auto 0;}
+    ul{list-style: none;}
+    li{margin: 0 0 5px 5px;float: left;border:1px solid #8c8c8c;border-radius: 5%;cursor:pointer;}
+    li.current img{opacity: 0.3;}
+</style>
+<script>
+    window.onload=function(){
+        var arrayImg=document.getElementsByTagName("li");
+        for(var i=0;i<arrayImg.length;i++){
+            arrayImg[i].onmouseover=function(){
+                this.className="current";
+            }
+            arrayImg[i].onmouseout=function(){
+                this.removeAttribute("class");
+            }
+        }
+    }
+</script>
+<body>
+<div id="touchArea">
+    <ul>
+        <li><img src="img/1.jpg"></li>
+        <li><img src="img/2.jpg"></li>
+        <li><img src="img/3.jpg"></li>
+        <li><img src="img/4.jpg"></li>
+        <li><img src="img/5.jpg"></li>
+        <li><img src="img/6.jpg"></li>
+        <li><img src="img/7.jpg"></li>
+        <li><img src="img/8.jpg"></li>
+        <li><img src="img/9.jpg"></li>
+    </ul>
+</div>
+</body>
+</html>
