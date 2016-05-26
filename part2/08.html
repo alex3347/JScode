@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>简易下拉列表</title>
+</head>
+<style type="text/css">
+    *{padding:0;margin:0;}
+    li{list-style:none;}
+    #list{width:180px;margin:40px auto;}
+    #list div{height:30px;line-height:30px;background-color:#f6f9fc;border:1px solid #9acfea;cursor: pointer;}
+    #list span{width:8px;height:4px;margin-top:13px;margin-right:11px;display:block;float:right;background:url("img/ico.gif") 0 0 no-repeat;}
+    #list span.pull{background: url("img/ico.gif") 0 -27px no-repeat;}
+    #list ul{background-color:#f6f9fc;display: none;}
+    #list ul.click{display: block;}
+    #list li{padding:8px 0;padding-left:10px;font-size: 13px;cursor: pointer;}
+    #list li.over{border:1px solid #9acfea;background-color:#9acfb1;}
+</style>
+<script type="text/javascript">
+    window.onload=function(){
+        var list=document.getElementById("list");
+        var listDiv=list.getElementsByTagName("div")[0];
+        var listDivSpan=listDiv.getElementsByTagName("span")[0];
+        var listUl=list.getElementsByTagName("ul")[0];
+        var listUlLi=listUl.getElementsByTagName("li");
+        listDiv.onclick=function(){
+            if(!listDivSpan.className){
+                listDivSpan.className="pull";
+                listUl.className="click";
+            }else{
+                listDivSpan.removeAttribute("class");
+                listUl.removeAttribute("class");
+            }
+        }
+        for(var i=0;i<listUlLi.length;i++){
+            listUlLi[i].onmouseover=function(){
+                for(var i=0;i<listUlLi.length;i++){
+                    listUlLi[i].className="";
+                }
+                this.className="over";
+            }
+        }
+    }
+</script>
+<body>
+<div id="list">
+    <div>播放列表<span></span></div>
+    <ul>
+        <li class="over">Fantastic Baby-河铉雨</li>
+        <li>贝尔加湖畔-李健</li>
+        <li>演员-薛之谦</li>
+        <li>清风徐来-王菲</li>
+        <li>心碎大道-朱婧汐</li>
+    </ul>
+</div>
+</body>
+</html>
