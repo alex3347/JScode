@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>复选框全选/反选</title>
+</head>
+<style type="text/css">
+    *{padding:0;margin:0;font-size:12px;}
+    li{list-style:none;}
+    #tip{width:330px;margin:0 auto;}
+    #list{width:140px;margin:40px auto 5px;border:1px solid #666;border-radius:5px;background:#fafafa;}
+    #list div{height:30px;line-height:30px;padding-left:15px;border-bottom:1px solid #666;}
+    #list ul{padding:10px 5px;}
+    #list li{margin-top:10px;padding:8px 0;padding-left:10px;}
+    input{cursor: pointer;}
+    span{padding:0 10px 0 5px;}
+    a{color:#09f;text-decoration: none;}
+    a:hover{color:red;cursor: pointer;}
+</style>
+<script type="text/javascript">
+    window.onload=function(){
+        var list=document.getElementById("list");
+        var listDiv=list.getElementsByTagName("div")[0];
+        var listDivSpan=listDiv.getElementsByTagName("span")[0];
+        var listDivInput=listDiv.getElementsByTagName("input")[0];
+        var listDivA=listDiv.getElementsByTagName("a")[0];
+        var listUl=list.getElementsByTagName("ul")[0];
+        var listUlInput=listUl.getElementsByTagName("input");
+        var isCheckedAll=function () {
+            for(var i=0,n=0;i<listUlInput.length;i++){
+                listUlInput[i].checked && n++;
+            }
+            listDivInput.checked=(n==listUlInput.length);
+        }
+        for(var i=0;i<listUlInput.length;i++){
+            listUlInput[i].onclick=function () {
+                isCheckedAll()
+            }
+        }
+        listDivInput.onclick=function(){
+            if(listDivInput.checked){
+                for(var i=0;i<listUlInput.length;i++){
+                    listUlInput[i].checked=true;
+                }
+                isCheckedAll()
+            }else{
+                for(var i=0;i<listUlInput.length;i++){
+                    listUlInput[i].checked=false;
+                }
+                isCheckedAll()
+            }
+        }
+        listDivA.onclick=function () {
+            for(var i=0;i<listUlInput.length;i++){
+                listUlInput[i].checked?(listUlInput[i].checked=false):(listUlInput[i].checked=true)
+            }
+            isCheckedAll()
+        }
+    }
+</script>
+<body>
+<div id="list">
+    <div><input type="checkbox"><span>全选</span><a>反选</a></div>
+    <ul>
+        <li><input type="checkbox"><span>选项（一）</span></li>
+        <li><input type="checkbox"><span>选项（二）</span></li>
+        <li><input type="checkbox"><span>选项（三）</span></li>
+        <li><input type="checkbox"><span>选项（四）</span></li>
+        <li><input type="checkbox"><span>选项（五）</span></li>
+    </ul>
+</div>
+<div id="tip">1、切换全选/全不选文字;2、根据选中个数更新全选框状态;</div>
+</body>
+</html>
