@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>求和parseInt解析的数字</title>
+</head>
+<style>
+    div{width:400px; margin:0 auto;}
+    .text{width:50px;border:1px solid #ccc;background:#f0f0f0;font-family:inherit;padding:3px;}
+    strong{padding:0 10px;}
+    #btn{margin-left: 20px;}
+    span{padding-left:15px;}
+</style>
+<script>
+    window.onload=function(){
+        var textInput = document.getElementsByTagName("input");
+        var valueSpan = document.getElementsByTagName("span")[0];
+        for (var i = 0; i < textInput.length - 1; i++)
+        {
+            textInput[i].onkeyup = function ()
+            {
+                this.value = this.value.replace(/[^\d]/,"")
+            }
+        }
+        textInput[2].onclick = function ()
+        {
+            (textInput[0].value == "" || textInput[1].value == "") ?
+                    alert("输入栏不能为空") :
+                    valueSpan.innerHTML = Math.max(parseInt(textInput[0].value), parseInt(textInput[1].value));
+        }
+    }
+</script>
+<body>
+    <div>
+        <input type="text" class="text" /><strong>vs</strong><input type="text" class="text" /><input id="btn" type="button" value="较大的数字为" /><span></span>
+    </div>
+</body>
+</html>
