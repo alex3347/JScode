@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>纪录点击数的按钮</title>
+</head>
+<style>
+    div{width:20px; margin:0 auto;}
+</style>
+<script>
+    window.onload=function(){
+        var btn= document.getElementsByTagName("input")[0];
+        var i=0;
+        btn.onclick=function () {
+            btn.value=++i;
+        }
+    }
+</script>
+<body>
+    <div>
+        <input type="button" value="0">
+    </div>
+</body>
+</html>
