@@ -9,18 +9,47 @@
     #touchArea{width:405px;margin:10px auto 0;}
     ul{list-style: none;}
     li{margin: 0 0 5px 5px;float: left;border:1px solid #8c8c8c;border-radius: 5%;cursor:pointer;}
-    li.current img{opacity: 0.3;}
+    ul li img{filter:alpha(opacity:30);opacity: 0.3;}
 </style>
 <script>
     window.onload=function(){
-        var arrayImg=document.getElementsByTagName("li");
+        var arrayImg=document.getElementsByTagName("img");
         for(var i=0;i<arrayImg.length;i++){
             arrayImg[i].onmouseover=function(){
-                this.className="current";
+            	fadeIn(this);
             }
             arrayImg[i].onmouseout=function(){
-                this.removeAttribute("class");
+            	fadeOut(this);
             }
+        }
+    	var speed=10;
+        var fadeIn = function(e){
+			var alpha = 30;
+			var img=e;
+			clearInterval(timer);
+			var timer = setInterval(function(){
+				if(alpha == 100){
+					clearInterval(timer);
+				}else{
+					alpha += speed;
+					img.style.filter = 'alpha(opacity:' + alpha +')';//兼容IE8及更早版本
+					img.style.opacity = alpha/100;
+				}
+			},30);
+        }
+        var fadeOut = function(e){
+			var alpha = 100;
+			var img=e;
+			clearInterval(timer);
+			var timer = setInterval(function(){
+				if(alpha == 30){
+					clearInterval(timer);
+				}else{
+					alpha -= speed;
+					img.style.filter = 'alpha(opacity:' + alpha +')';//兼容IE8及更早版本
+					img.style.opacity = alpha/100;
+				}
+			},30);
         }
     }
 </script>
