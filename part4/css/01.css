@@ -1,0 +1,17 @@
+*{margin:0;padding:0;}
+body>div{margin:0 auto}
+body {text-align: center; font: 12px "微软雅黑"; }
+a {color: #242424;text-decoration:none}
+a:hover {color: #D40000;text-decoration: none}
+
+#calcuator{ width:200px; height:265px; margin-top:30px;padding:10px; border:1px solid #e5e5e5; background:#FDDD9B; border-radius:3px;}
+#calcuator #calcuCopy h3{float:left;}
+#calcuator span{float:right;}
+#calcuator #input-box{ width:187px; padding:9px 5px; height:14px;border:1px solid #8E9CAD; border-radius:3px;text-align:right; line-height:14px;font-size:16px;}
+#calcuator #btn-list{ width:200px;}
+#calcuator #btn-list div{ border-radius:2px; border:1px solid #8E9CAD; background-color:#f8efc0;line-height:29px;font-weight:bold;float:left; margin-left:11px; margin-top:11px; font-size:14px; cursor:pointer;}
+#calcuator #btn-list .clear-marginleft{ margin-left:0;}
+#calcuator #btn-list .color-red{ color:red}
+#calcuator #btn-list .color-green{ color:#6CB33E}
+#calcuator #btn-list .btn-30{ width:29px; height:29px;}
+#calcuator #btn-list .btn-70{ width:70px; height:29px;}
