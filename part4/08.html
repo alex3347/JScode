@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="UTF-8">
+		<title>封装兼容性事件添加/删除函数</title>
+		<style type="text/css">
+			#container{text-align: center;}
+		</style>
+	</head>
+	<script type="text/javascript">
+		var EventUtil = {
+			addHandler: function (obj, eventName, handler) {
+				obj.addEventListener ? obj.addEventListener(eventName, handler, false) : obj.attachEvent("on" + eventName, handler)	
+			},
+			removeHandler: function (obj, eventName, handler) {
+				obj.removeEventListener ? obj.removeEventListener(eventName, handler, false) : obj.detachEvent("on" + eventName, handler)
+			},
+			addLoadHandler: function (handler) {
+				this.addHandler(window, "load", handler)
+			}
+		};
+		EventUtil.addLoadHandler(function () {
+			var aBtn = document.getElementsByTagName("input");
+				//为第一个按钮添加绑定事件
+				EventUtil.addHandler(aBtn[1], "click", function () {
+					EventUtil.addHandler(aBtn[0], "click", handler);	
+					aBtn[0].value = "我可以点击了"
+				});
+				//解除第一个按钮的绑定事件
+				EventUtil.addHandler(aBtn[2], "click", function () {
+					EventUtil.removeHandler(aBtn[0], "click", handler);
+					aBtn[0].value = "毫无用处的按钮"	
+				});
+				//事件处理函数
+				function handler ()
+				{
+					alert("事件绑定成功！")	
+				}	
+			})
+	</script>
+	<body>
+		<pre>
+		&lt;script type="text/javascript"&gt;
+		var EventUtil = {
+			addHandler: function (obj, eventName, handler) {
+				obj.addEventListener ? obj.addEventListener(eventName, handler, false) : obj.attachEvent("on" + eventName, handler)	
+			},
+			removeHandler: function (obj, eventName, handler) {
+				obj.removeEventListener ? obj.removeEventListener(eventName, handler, false) : obj.detachEvent("on" + eventName, handler)
+			},
+			addLoadHandler: function (handler) {
+				this.addHandler(window, "load", handler)
+			}
+		}
+		&lt;/script&gt;
+		</pre>
+		<div id="container">			
+			<input type="button" value="毫无用处的按钮">
+			<input type="button" value="绑定click">
+			<input type="button" value="解除绑定">
+		</div>
+	</body>
+</html>
