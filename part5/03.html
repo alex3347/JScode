@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="UTF-8">
+		<title>显示按下的键值</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{background-color: #6CB33E;}
+			#box{width: 180px;height: 20px;background-color: #9ACFB1;margin: 25% auto;padding-left: 10px;}
+		</style>
+	</head>
+	<script type="text/javascript">
+		document.onkeyup = function (event)
+			{
+				var oBox=document.getElementById("box");
+				var event = event || window.event;	
+				oBox.innerHTML="KeyCode为：[" + event.keyCode + "]";
+			}
+	</script>
+	<body>
+		<div id="box">此处显示按下的键值</div>
+	</body>
+</html>
