@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义右键菜单</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{position: relative;}
+			div{text-align: center;}
+			ul{list-style:none;position:absolute;color:#fff;width:100px;background:#2b2b2b;border:1px solid #fff;display: none;}
+			ul.sub{display: block;}
+			ul li{height:25px;line-height:24px;text-align:center;cursor:pointer;margin-bottom:-1px;border-bottom:1px dotted #fff;}
+			ul li.hover{background:#8b8b8b;}
+		</style>
+		<script type="text/javascript">
+		window.onload=function(){
+			var oUl=document.getElementsByTagName("ul")[0];
+			var aLi = document.getElementsByTagName("li");
+			for (var i = 0; i < aLi.length; i++)
+			{
+				aLi[i].onmouseover = function ()
+				{
+					this.className = "hover"
+				};
+				aLi[i].onmouseout = function ()
+				{
+					this.className = "";
+				};
+			}	
+			document.oncontextmenu=function(event){
+				var event=event||window.event;//e=e||event;
+				oUl.style.left=event.clientX+"px"
+				oUl.style.top=event.clientY+"px"
+				oUl.className="sub";
+				return false;
+			}
+			document.onclick=function(){
+				oUl.className="";
+			}
+		}
+		</script>
+	</head>
+
+	<body>
+		<ul>
+			<li>Button1</li>
+			<li>Button2</li>
+			<li>Button3</li>
+			<li>Button4</li>
+			<li>Button5</li>
+		</ul>
+		<div>请在页面点击右键查看效果</div>
+	</body>
+
+</html>
