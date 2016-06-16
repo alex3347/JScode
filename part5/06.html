@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>放大镜效果</title>
+		<style type="text/css">
+			#container{ width:430px;margin:30px auto; text-align:left; padding:0; }
+	        #container{border:1px solid #ccc; position:relative; }
+	        #container #smallPic{ width:430px; height:430px; background:#eee; position:relative; cursor:move;}
+	        #container .floatLayer{ width:100px; height:100px; border:1px solid #000; background:#fff; filter:alpha(opacity:30); opacity:0.3; position:absolute; top:0; left:0; display:none; }
+	        #container .mark{ width:100%; height:100%; position:absolute; z-index:2; left:0px; top:0px;opacity:0; }
+	        #container #bigPic{ position:absolute; top:0; left:450px; width:250px; height:250px; overflow:hidden; border:1px solid #CCC; display:none; }
+	        #container #bigPic img{ position:absolute; top:-30px; left:-80px; }
+		</style>
+		<script type="text/javascript">
+		window.onload=function(){
+			var container = document.getElementById('container');
+			var smallPic = document.getElementById('smallPic');
+			var bigPic = document.getElementById('bigPic');
+	        var img = bigPic.getElementsByTagName('img')[0];
+	        var mark = smallPic.getElementsByTagName('span')[0];
+	        var layer = smallPic.getElementsByTagName('span')[1];
+	        smallPic.onmousemove = function(e){
+	            e = e || event;
+	            layer.style.display = bigPic.style.display = 'block';
+	            		//鼠标位置 - container的上margin - layer高度的一半  小于0表示鼠标在layer一半位置内移动，需要锁定layer绝对定位值，防止layer飘出
+	            var t = e.clientY - container.offsetTop - layer.clientHeight/2;
+	            var l = e.clientX - container.offsetLeft - layer.clientWidth/2;
+	            if(t < 0){
+	                t = 0;//让layer靠紧container上边框
+	            } else if(t > container.clientHeight - layer.clientHeight){
+	                t = container.clientHeight - layer.clientHeight;
+	            }
+	            if(l < 0){
+	                l = 0;
+	            } else if(l > container.clientWidth - layer.clientWidth){
+	                l = container.clientWidth - layer.clientWidth;
+	            }
+	            var scaleX = l / (container.clientHeight - layer.clientHeight);
+	            var scaleY = t / (container.clientWidth - layer.clientWidth);
+	            layer.style.top = t + 'px';
+	            layer.style.left = l + 'px';
+	            img.style.left = -scaleX * (img.clientWidth - bigPic.clientWidth) + 'px';
+	            img.style.top = -scaleY * (img.clientHeight - bigPic.clientHeight) + 'px';
+	        }
+	        smallPic.onmouseout = function(e){
+	            layer.style.display = bigPic.style.display = 'none';
+	        }
+		}
+		</script>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="smallPic">
+		        <span class="mark"></span>
+		        <span class="floatLayer"></span>
+		        <img src="img/430x430.jpg" alt="小图"/>
+		    </div>
+		    <div id="bigPic">
+		        <img src="img/800x800.jpg" alt="大图"/>
+		    </div>
+	    </div>
+	</body>
+
+</html>
