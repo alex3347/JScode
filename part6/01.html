@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>简单拖拽</title>
+	<style>
+		#square{
+			width:120px;
+			height:60px;
+			background:#a89911;
+			position:fixed;
+			left:100px;
+			top:50px;
+		}
+	</style>
+	<script>
+	window.onload=function(){
+		var zt=document.getElementById('square');
+		var isPressed=false;
+		var offsetX=0;
+		var offsetY=0;
+		zt.onmousedown=function(){
+			isPressed=true;
+			this.style.cursor='move';
+			offsetX=event.offsetX;
+			offsetY=event.offsetY;
+		}
+		zt.onmouseup=function(){
+			isPressed=false;
+			this.style.cursor='default';
+		}
+		zt.onmousemove=function(event){
+			if(!isPressed){
+				return;
+			}
+			zt.style.left=(event.clientX-offsetX)+'px';
+			zt.style.top=(event.clientY-offsetY)+'px';
+		}		
+	}
+	</script>
+</head>
+<body>
+	<div id="square"></div>
+</body>
+</html>
