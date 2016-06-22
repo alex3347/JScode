@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>简易时钟</title>
+		<title>倒计时</title>
 	</head>
 	<style>
 		* {
@@ -31,22 +31,31 @@
 	<script>
 		window.onload = function() {
 			var oSpan = document.getElementsByTagName("span");
-
+			var time=null;
 			function getTimes() {
-				var d = new Date();
-				var dArray = [d.getHours(), d.getMinutes(), d.getSeconds()];
-				for (var i = 0; i < dArray.length; i++) {
-					oSpan[i].innerHTML = dArray[i];
-				}
+					oSpan[2].innerHTML = oSpan[2].innerHTML-1;
+					if(oSpan[2].innerHTML==0&&oSpan[1].innerHTML==1&&oSpan[0].innerHTML==0){
+						oSpan[1].innerHTML = oSpan[1].innerHTML-1;
+						clearInterval(time);
+						return;
+					}
+					if(oSpan[2].innerHTML==0){
+						oSpan[2].innerHTML=9;
+						oSpan[1].innerHTML = oSpan[1].innerHTML-1;
+					}
+					if(oSpan[1].innerHTML==0){
+						oSpan[1].innerHTML=59;
+						oSpan[0].innerHTML = oSpan[0].innerHTML-1;
+					}
 			}
 			getTimes();
-			setInterval(getTimes, 1000);
+			time=setInterval(getTimes, 100);
 		}
 	</script>
 
 	<body>
 		<div id="clockForm">
-			<span></span>时<span></span>分<span></span>秒
+			<span>1</span>：<span>59</span>：<span>9</span>
 		</div>
 		</div>
 	</body>
