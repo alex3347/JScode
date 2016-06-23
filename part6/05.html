@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="UTF-8">
+		<title>侧边栏</title>
+	</head>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		div{width: 100px;height: 200px;background: #D8E8FF;position: absolute;;left: -100px;top: 100px;cursor: pointer;}
+		div span{width: 20px;height: 60px;text-align: center;line-height:20px;background: #FF6600;color:white;position:absolute;left: 100px;top: 30px;font-size: 14px;}
+	</style>
+	<script>
+		window.onload=function(){
+			var oDiv = document.getElementsByTagName('div')[0];
+			oDiv.onmouseover = function(){
+				startMove(0);
+			}
+			oDiv.onmouseout = function(){
+				startMove(-100);
+			}
+			var timer = null;
+			function startMove(iTarget){
+				var iSpeed = 0;
+				if(oDiv.offsetLeft < iTarget){
+					iSpeed = 7;
+				}else{
+					iSpeed = -7;
+				}
+				clearInterval(timer);
+				timer = setInterval(function(){
+					if(Math.abs(oDiv.offsetLeft - iTarget) < Math.abs(iSpeed)){
+						clearInterval(timer);
+						oDiv.style.left = iTarget +'px';
+					}else{
+						oDiv.style.left =oDiv.offsetLeft + iSpeed +'px'; 
+					}
+				},30);
+			}
+		};
+	</script>
+	<body>
+		<div>
+			<span>分享到</span>
+		</div>
+	</body>
+
+</html>
