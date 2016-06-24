@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="UTF-8">
+		<title>滚动侧边栏</title>
+	</head>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		body{height: 1000px;}
+		div{width: 100px;height: 200px;background: #D8E8FF;position: absolute;right: 0;}
+	</style>
+	<script>
+		window.onscroll = window.onload = function(){
+			var oDiv = document.getElementsByTagName('div')[0];
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			var newScrollTop = scrollTop + (document.documentElement.clientHeight - oDiv.offsetHeight)/2;
+			startMove(parseInt(newScrollTop));
+			var timer = null;
+			function startMove(iTarget){
+				var oDiv = document.getElementsByTagName('div')[0];
+				clearInterval(timer);
+				timer = setInterval(function(){
+					var iSpeed = (iTarget - oDiv.offsetTop)/8;
+					iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+					if(oDiv.offsetTop == iTarget){
+						clearInterval(timer);
+					}else{
+						oDiv.style.top = oDiv.offsetTop + iSpeed + 'px';
+					}
+				},30);
+			}
+		}
+	</script>
+	<body>
+		<div></div>
+	</body>
+
+</html>
