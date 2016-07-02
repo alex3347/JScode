@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>操作cookie</title>
+
+</head>
+
+<body>
+	<h2><center>js常见操作cookie</center></h2>
+	<center>
+		<p>请打开浏览器控制台，查看操作cookie情况</p>
+		<p>例如chrome按f12-resources-cookies</p>
+		<input type="button" value='设置cookie'>
+		<input type="button" value='删除当前页cookie'>
+	</center>
+<script>
+	function setCookie(cName, value, expireDays){
+　　　　var exdate=new Date();
+		//以天为单位设置有效期
+　　　　exdate.setDate(exdate.getDate() + expireDays);
+
+　　　　document.cookie=cName+ "=" + encodeURIComponent(value) + ((expireDays==null) ? "" : ";expires="+exdate.toGMTString());
+　　}
+
+	//获取cookie	值
+	function getCookie(cName){
+	　　　　if (document.cookie.length>0){　　
+	　　　　　　c_start=document.cookie.indexOf(cName + "=")　　　
+	　　　　　　if (c_start!=-1){ 
+	　　　　　　　　c_start=c_start + cName.length+1　　
+	　　　　　　　　c_end=document.cookie.indexOf(";",c_start)　
+	　　　　　　　　if (c_end==-1) c_end=document.cookie.length　　
+	　　　　　　　　return decodeURIComponent(document.cookie.substring(c_start,c_end))　　
+	　　　　　　} 
+	　　　　}
+	　　　　return ""
+	　　}
+
+	//删除cookie name为cookie字符串名称
+	function delCookie(cName)//删除cookie
+	{
+	    var exp = new Date();
+	    exp.setTime(exp.getTime() - 1);
+	    var cVal=getCookie(cName);
+	    if(cVal!=null) document.cookie= cName + "="+cVal+";expires="+exp.toGMTString();//设置cookie时间为过期时间即可删除
+	}	
+	var btn=document.getElementsByTagName("input");
+	btn[0].onclick=function(){
+		setCookie("alex", 3347, 2);
+	}
+	btn[1].onclick=function(){
+		delCookie("alex");
+	}
+</script>
+</body>
+</html>
