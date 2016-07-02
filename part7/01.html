@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head>
+  <meta charset="UTF-8"/>
+  <title>打字机效果</title>
+  <style type="text/css">
+	*{margin:0; padding:0;}
+	#content{
+		width:500px;
+		border:1px solid #9ACFB1;
+		margin:20px auto;
+		height:250px;
+		text-indent:24px;/*首行缩进24px*/
+		padding:5px;
+	}
+  </style>
+ </head>
+
+ <body>
+ 	<h1>
+		<center>简单的打字机效果</center>
+	</h1>
+	<div id="content"></div>
+	  <script>
+		var text="在经过一季度创纪录信贷投放后，随着权威人士5月9日第三度在《人民日报》发声谈中国经济并进一步明确“高杠杆带来高风险”后，严打各类的金融投机、引导资金进入实体经济的监管之风已经悄然在中国金融监管部门之间形成。最能明显感受到的就是，4月中下旬一场由国务院决策部署、十余个部委共同行动的互联网金融专项整治在全国范围内拉开大幕。在总计七个分项整治子方案中，央行、银监会、证监会、保监会分别对网络支付、网络借贷、股权众筹和互联网保险等领域，开启专项整治计划。";
+		var content=document.getElementById("content");
+		var count=1;
+		function run(){
+			content.innerHTML=text.substring(0,count)+"|";
+			count++;
+		}
+		var timer=setInterval(function(){
+			count!=text.length ? run() : clearInterval(timer);
+		},150);
+	  </script>
+ </body>
+</html>
