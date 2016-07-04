@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8"/>
+<title>原生JavaScript学习</title>
+<link href="favicon.ico" rel="icon" type="image/x-icon" />
+<style>
+*{margin:0;padding:0;}
+a:link,a:visited{color:#6A6A6A;text-decoration:none;}
+a:hover{color:#C1512D;text-decoration:underline;}
+#container{width:350px;background:#FFF;border:10px solid #646464;border-radius:10px;margin:10px auto 0;}
+#container dl{height:32px;color:#FFF;overflow:hidden;}
+#container dt,#container dd{padding-left:15px;border-bottom:1px solid #353539;}
+#container dt{cursor:pointer;font-size:14px;background:#444651;font:700 14px/31px Tahoma;}
+#container dt.current{background:#363636;}
+#container dd{color:#6A6A6A;background:#F0F0F0;font:13px/31px Tahoma;}
+#instruction{color:#444651;width:374px;text-align:right;font:12px/31px Tahoma;margin:5px auto 0;}
+</style>
+<script src="CreateList.js"></script>
+<script>
+window.onload = function() {
+	var data = [
+	            [
+	                { title : 'part1'},
+	                { href : 'part1/01.html', title : '控制DIV属性' },
+	                { href : 'part1/02.html', title : '网页更换皮肤' },
+	                { href : 'part1/03.html', title : '函数接收参数并弹出' },
+	                { href : 'part1/04.html', title : '点击变色' },
+	                { href : 'part1/05.html', title : '鼠标移入移出改变样式' }
+	            ],
+	            [
+	                { title : 'part2'},
+	                { href : 'part2/01.html', title : '点击DIV，显示其innerHTML' },
+	                { href : 'part2/02.html', title : '求数组中元素和' },
+	                { href : 'part2/03.html', title : '弹出层' },
+	                { href : 'part2/04.html', title : '通过传递参数，改变DIV的属性' },
+	                { href : 'part2/05.html', title : '鼠标移入移出改变透明度' },
+	                { href : 'part2/06.html', title : '选项卡' },
+	                { href : 'part2/07.html', title : '简易年历' },
+	                { href : 'part2/08.html', title : '简易下拉列表' },
+	                { href : 'part2/09.html', title : '鼠标移动，显示图标' },
+	                { href : 'part2/10.html', title : '复选框全选/反选' }
+	            ],
+	            [
+	                { title : 'part3'},
+	                { href : 'part3/01.html', title : '求和parseInt解析的数字' },
+	                { href : 'part3/02.html', title : '纪录点击数的按钮' },
+	                { href : 'part3/03.html', title : '求和parseInt解析的数字' },
+	                { href : 'part3/04.html', title : '简易时钟' },
+	                { href : 'part3/05.html', title : '倒计时' }
+	            ],
+	            [
+	                { title : 'part4'},
+	                { href : 'part4/01.html', title : '简易计算器' },
+	                { href : 'part4/02.html', title : '下拉菜单延时消失' },
+	                { href : 'part4/03.html', title : '简易轮播' },
+	                { href : 'part4/04.html', title : '轮播加入淡入效果' },
+	                { href : 'part4/05.html', title : 'JS arguements类数组求和' },
+	                { href : 'part4/06.html', title : '封装CSS属性函数' },
+	                { href : 'part4/07.html', title : '数组方法的使用' },
+	                { href : 'part4/08.html', title : '封装兼容性事件添加/删除函数' },
+	                { href : 'part4/09.html', title : '星级评分' }
+	            ],
+	            [
+	                { title : 'part5'},
+	                { href : 'part5/01.html', title : 'DIV模拟select控件' },
+	                { href : 'part5/02.html', title : '实时显示鼠标坐标' },
+	                { href : 'part5/03.html', title : '显示按下的键值' },
+	                { href : 'part5/04.html', title : '阻止右键菜单弹出' },
+	                { href : 'part5/05.html', title : '自定义右键菜单' },
+	                { href : 'part5/06.html', title : '放大镜效果' }
+	            ],
+	            [
+	                { title : 'part6'},
+	                { href : 'part6/01.html', title : '简单拖拽' },
+	                { href : 'part6/02.html', title : '缓冲效果轮播' },
+	                { href : 'part6/03.html', title : '简易3D旋转' },
+	                { href : 'part6/04.html', title : '重力效果' },
+	                { href : 'part6/05.html', title : '侧边栏' },
+	                { href : 'part6/06.html', title : '滚动侧边栏' },
+	                { href : 'part6/07.html', title : '数字闪烁效果' },
+	                { href : 'part6/08.html', title : '交换表格的行' },
+	                { href : 'part6/09.html', title : '2级下拉菜单' },
+	                { href : 'part6/10.html', title : '不限层级的下拉列表' }
+	            ],
+	            [
+	                { title : 'part7'},
+	                { href : 'part7/01.html', title : '打字机效果' },
+	                { href : 'part7/02.html', title : '操作cookie' },
+	                { href : 'part7/03.html', title : '实现基于cookie的存储API' },
+	                { href : 'part7/04.html', title : '判断传入的两个数组是否相似' }
+	            ]
+	        ];
+    new CreateList(data);
+    
+};
+</script>
+</head>
+<body>
+</body>
+</html>
