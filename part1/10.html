@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="UTF-8">
+		<title>星级评分</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			ul{list-style:none;}
+			#container{position:relative;width:600px;margin:10px auto;}
+			#container ul{float:left;margin:0 10px;}
+			#container span{float:left;height:24px;line-height:24px;}
+			#container li{float:left;width:24px;height:24px;cursor:pointer;background:url(images/stars.jpg) 0 0 no-repeat;}
+			#container li.star{background-position:0 -48px;}
+			#container li.threeStar{background-position:0 -25px;}
+			#container li.fiveStar{background-position:0 -72px;}
+			#container #tip{display:none;position:absolute;top:30px;font-size:14px;background:url(images/infobox-bg.gif) no-repeat;padding-top:8px;width:192px;margin-left:-14px;}
+			#container #tip div{border: 1px solid #f60;border-top:none;}
+			#container #tip div b{color:#f60;display:block;font-style:normal;}
+		</style>
+	</head>
+	<script type="text/javascript">
+		window.onload=function  () {
+			var oContainer = document.getElementById("container");
+			var aLi = oContainer.getElementsByTagName("li");
+			var oUl = oContainer.getElementsByTagName("ul")[0];
+			var oSpan = oContainer.getElementsByTagName("span")[1];
+			var oTip = document.getElementById("tip");
+			var i,iStar;
+			var aMsg = [
+				"1分 很不满意|商品样式和质量都非常差，太令人失望了！",
+				"2分 不满意|商品样式和质量不好，不能满足要求。",
+				"3分 一般|商品样式和质量感觉一般。",
+				"4分 满意|商品样式和质量都比较满意，符合我的期望。",
+				"5分 非常满意|我很喜欢！商品样式和质量都很满意，太棒了！"
+				];
+			function starValue (value){
+					for (var j=0;j<aLi.length;j++) {
+							aLi[j].className="";
+						}
+					switch (value){
+						case 0:
+							aLi[value].className="star";
+							break;
+						case 1:
+							aLi[value-1].className=aLi[value].className="star";
+							break;
+						case 2:
+							for (var k=0;k<aLi.length-2;k++) {
+								aLi[k].className="threeStar";
+							}
+							break;
+						case 3:
+							for (var k=0;k<aLi.length-1;k++) {
+								aLi[k].className="threeStar";
+							}
+							break;
+						case 4:
+							for (var k=0;k<aLi.length;k++) {
+								aLi[k].className="fiveStar";
+							}
+							break;
+						default:
+							break;
+					}
+				
+			}
+			for (i=0;i<aLi.length;i++) {
+				aLi[i].index=i;
+				aLi[i].onmouseover=function  () {
+					//浮动层显示
+					oTip.style.left=65+24*this.index+"px";
+					oTip.style.display="block";
+					oTip.innerHTML="<div>"+"<b>"+aMsg[this.index].match(/(.+)\|/)[1]+"</b>"+aMsg[this.index].match(/\|(.+)/)[1]+"</div>";
+					starValue(this.index);
+				}
+				aLi[i].onmouseout=function  () {
+					oTip.style.display="none";
+					starValue(iStar);
+				}
+				aLi[i].onclick=function  () {
+					oSpan.style.color="#f60";
+					oSpan.innerHTML=aMsg[this.index].match(/(.+)\|/)[1];
+					iStar=this.index;
+				}
+			}
+				
+		}
+	</script>
+	<body>
+		<div id="container">			
+			<span>满意度:</span>
+		    <ul>
+		        <li></li>
+		        <li></li>
+		        <li></li>
+		        <li></li>
+		        <li></li>
+		    </ul>
+		    <span></span>
+		    <div id="tip"></div>
+		</div>
+	</body>
+</html>

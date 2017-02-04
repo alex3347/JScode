@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    li{list-style: none;}
+    .clear{clear:both;}
+    #touchArea{width:564px;margin:10px auto 0;}
+    #touchArea ul li{float: left;margin:10px auto 0;padding:5px 10px;border:1px solid #a94442;background-color: #0f0f0f;color:white;}
+    #touchArea ul li.current{background-color: #d6e9c6;color:black;}
+    #textArea{width:561px;margin:0 auto 10px;}
+    #textArea ul li{border:1px solid #a94442;float: left;display: none;}
+    #textArea ul li.textCurrent{display: block;}
+</style>
+<script>
+    window.onload=function(){
+        var arrayLi=document.getElementById("touchArea").getElementsByTagName("li");
+        var arrayText=document.getElementById("textArea").getElementsByTagName("li");
+        for(var i=0;i<arrayLi.length;i++){
+            arrayLi[i].index=i;
+            arrayLi[i].onmouseover=function(){
+                for(var j=0;j<arrayLi.length;j++){
+                    arrayLi[j].className="";
+                    arrayText[j].className="";
+                }
+                this.className="current";
+                arrayText[this.index].className="textCurrent";
+            }
+        }
+    }
+</script>
+<body>
+<div id="touchArea">
+    <ul>
+        <li class="current">狗狗受凉感冒的症状</li>
+        <li>狗狗受凉感冒该怎么办</li>
+        <li>狗狗在受凉感冒期间需注意</li>
+    </ul>
+</div>
+<div class="clear"></div>
+<div id="textArea">
+    <ul>
+        <li class="textCurrent">了解了狗狗受凉感冒的一些常见表现，才能及时的发现狗狗病情，及早诊治，保证狗狗的健康，狗狗受凉感冒主要表现有：
+            1.精神状态不佳，整日显得萎靡不振。
+            2.狗鼻孔里常有清水样的鼻涕淌出，非脓性鼻涕。
+            3.喷嚏多多，咳嗽频频，吃食困难，好似咽部、喉咙有严重不适
+            4.眼睛红红的，充血症状，莫名的有泪水流出。
+            5.食欲大降，吃什么都没胃口。
+            6.伴随发热症状，体温多为39至40摄氏度，而正常情况下，成年狗应为36.5至37.5之间，小狗通常在37至38摄氏度左右。
+            7.狗狗的嗅觉明显减退，即使闻到香喷喷的狗粮、甜点都无精打采。</li>
+        <li>正常情况下，狗狗的感冒病程一般在3-5天，多的话在7-10天。抵抗力强的狗狗可能过几天后就自己痊愈了，然而也有些狗狗的感冒病症会变的更严重，而且可能诱发支气管炎或肺炎等疾病。疗时。要防止狗狗感冒病症变得严重，更要避免诱发其他疾病。在狗狗感冒的过程中，一定要多注意休息，需要补充更多的水分，同时要增加营养特别是维生素的补充。至于药物的选择最好是听取兽医的建议，主人不要盲目随便自己给狗狗吃药</li>
+        <li>1.保温处理：狗狗感冒首先应该对狗狗进行保温处理，可以在其睡觉处多垫点棉布或者放个火炉等。
+            2.喂狗狗吃姜汤：大家都知道姜汤驱寒，喂狗狗喝姜汤同样能帮助狗狗驱寒治感冒，虽然姜汤的味道可能有很多狗狗不是很喜欢，但是，每只狗狗的情况都不同，你可是试着喂它，说不定感冒时的它味觉比较迟钝也就喝了。
+            3.补充营养：狗狗感冒就像人生病一样，身体处于虚弱时期，所以需要补充更多的营养，这样狗狗才能早一点恢复健康。</li>
+    </ul>
+</div>
+</body>
+</html>

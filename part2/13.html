@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标移动，显示图标</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    #touchArea{width:405px;margin:10px auto 0;}
+    ul{list-style: none;}
+    li{width:128px;height:131px;margin: 0 0 5px 5px;float: left;border:1px solid #8c8c8c;border-radius: 5%;cursor:pointer;}
+    li strong{width:128px;height:131px;display: block;line-height: 131px;text-align: center;}
+    li img{display: none;}
+    li.current img{display:block;}
+    li.current strong{display: none;}
+</style>
+<script>
+    window.onload=function(){
+        var arrayImg=document.getElementsByTagName("li");
+        var arrayStrong=document.getElementsByTagName("strong");
+        var arrayBackground=["#F8D8CB","#F9D6B0","#447155","#85904E","#FBDD3F","#8DB6B7","#F2F1F5","#3182B1","#6CAED0"];
+        for(var i=0;i<arrayImg.length;i++){
+            arrayStrong[i].style.backgroundColor=arrayBackground[i];
+            arrayImg[i].onmouseover=function(){
+                this.className="current";
+            }
+            arrayImg[i].onmouseout=function(){
+                this.removeAttribute("class");
+            }
+        }
+    }
+</script>
+<body>
+<div id="touchArea">
+    <ul>
+        <li><strong>BMW</strong><img src="images/1.jpg"></li>
+        <li><strong>Alfa Romeo</strong><img src="images/2.jpg"></li>
+        <li><strong>Skoda</strong><img src="images/3.jpg"></li>
+        <li><strong>Volkswagen</strong><img src="images/4.jpg"></li>
+        <li><strong>Saab</strong><img src="images/5.jpg"></li>
+        <li><strong>Lamborghini</strong><img src="images/6.jpg"></li>
+        <li><strong>Porsche</strong><img src="images/7.jpg"></li>
+        <li><strong>Peugeot</strong><img src="images/8.jpg"></li>
+        <li><strong>Mercedes</strong><img src="images/9.jpg"></li>
+    </ul>
+</div>
+</body>
+</html>

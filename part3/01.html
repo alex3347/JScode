@@ -1,37 +1,61 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-    <meta charset="UTF-8">
-    <title>求和parseInt解析的数字</title>
-</head>
-<style>
-    div{width:400px; margin:0 auto;}
-    .text{width:50px;border:1px solid #ccc;background:#f0f0f0;font-family:inherit;padding:3px;}
-    span{color:green;padding-right:10px;font-weight:700;}
-    strong{padding:0 10px;}
-</style>
-<script>
-    window.onload=function(){
-        var textInput = document.getElementsByTagName("input");
-        var valueSpan = document.getElementsByTagName("span")[0];
-        for (var i = 0; i < textInput.length - 1; i++)
-        {
-            textInput[i].onkeyup = function ()
-            {
-                this.value = this.value.replace(/[^\d]/,"")
-            }
-        }
-        textInput[2].onclick = function ()
-        {
-            (textInput[0].value == "" || textInput[1].value == "") ?
-                    alert("输入栏不能为空") :
-                    valueSpan.innerHTML = parseInt(textInput[0].value) + parseInt(textInput[1].value);
-        }
-    }
-</script>
-<body>
-    <div>
-        <input type="text" class="text" /><strong>+</strong><input type="text" class="text" /><strong>=</strong><span>?</span><input type="button" value="求和" />
-    </div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>简易3D旋转</title>
+	</head>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		#wrap{width: 200px;height: 200px;margin: 30px auto;cursor: pointer;}
+		#box{position: relative;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:2s all;-webkit-transition:3s all;}
+		.circle{ 
+			width: 100px; 
+			height: 100px; 
+			border-radius: 50px; 
+			-moz-border-radius: 50px; 
+			-webkit-border-radius: 50px; 
+			position: absolute;top: 0;left: 50px;
+			font-size: 100px;
+			line-height: 100px;
+			font-weight: 200px;
+			color: #fff;
+			text-align: center;
+		}
+		#circle1{
+			background: red;
+		}
+		#circle2{
+			background: green;
+			transform:rotateY(180deg);
+			-webkit-transform:rotateY(180deg);
+			backface-visibility:hidden;/*隐藏被旋转的 div 元素的背面*/
+			-webkit-backface-visibility:hidden;	 /* Chrome 和 Safari */
+			-moz-backface-visibility:hidden; 	/* Firefox */
+			-ms-backface-visibility:hidden; 	/* Internet Explorer */
+		}
+		.hover{transform:rotateY(180deg);-webkit-transform:rotateY(180deg);}
+	</style>
+	<script>
+		window.onload=function(){
+			var divBox=document.getElementById("box");
+			divBox.onmouseover = function ()
+			{
+				this.className="hover";
+			};
+			
+			divBox.onmouseout = function ()
+			{
+				this.className="";
+			};
+		}	
+	</script>
+	<body>
+		<div id="wrap">
+			<div id="box">
+				<div id="circle1" class="circle"><span>1</span></div>
+				<div id="circle2" class="circle"><span>2</span></div>
+			</div>
+		</div>
+	</body>
+
 </html>

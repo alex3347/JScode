@@ -1,23 +1,57 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html>
 	<head>
 		<meta charset="UTF-8">
-		<title>显示按下的键值</title>
-		<style type="text/css">
-			*{margin:0;padding:0;}
-			body{background-color: #6CB33E;}
-			#box{width: 180px;height: 20px;background-color: #9ACFB1;margin: 25% auto;padding-left: 10px;}
-		</style>
-	</head>
-	<script type="text/javascript">
-		document.onkeyup = function (event)
-			{
-				var oBox=document.getElementById("box");
-				var event = event || window.event;	
-				oBox.innerHTML="KeyCode为：[" + event.keyCode + "]";
+		<title>extend继承</title>
+		<script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>  
+		<script type="text/javascript">
+//			function extend(subClass,superClass){
+//				var F=function(){};
+//				F.prototype=superClass.prototype;
+//				subClass.prototype=new F();
+//				subClass.prototype.constructor=subClass;
+//			}
+//			//超类
+//			function Person(name){
+//				this.name=name;
+//			}
+//			Person.prototype.getName=function(){
+//				return this.name;
+//			}
+//			//子类
+//			function Author(name,books){
+//				Person.call(this.name);
+//				this.books=books;
+//			}
+//			extend(Author,Person);
+//以上方法不具有普适性，因为子类中有超类的名字，以下为普适性方法
+			function extend(subClass,superClass){
+				var F=function(){};
+				F.prototype=superClass.prototype;
+				subClass.prototype=new F();
+				subClass.prototype.constructor=subClass;
+				
+				subClass.superclass=superClass.prototype;//定义superclass属性，指向超类的原型
+				if(superClass.prototype.constructor == Object.prototype.constructor){
+					superClass.prototype.constructor = superClass;
+					//用来确保超类的构造器属性被正确设置，即使超类是Object本身，Object默认构造器属性指向null
+				}
 			}
-	</script>
-	<body>
-		<div id="box">此处显示按下的键值</div>
-	</body>
+			//超类
+			function Person(name){
+				this.name=name;
+			}
+			Person.prototype.getName=function(){
+				return this.name;
+			}
+			//子类
+			function Author(name,books){
+				Author.superclass.constructor.call(this.name);
+				this.books=books;
+			}
+			extend(Author,Person);
+		</script>  
+	</head>  
+	<body>  
+	</body> 
 </html>

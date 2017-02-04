@@ -1,38 +1,133 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
-    <meta charset="UTF-8">
-    <title>求和parseInt解析的数字</title>
+	<meta charset="UTF-8">
+	<title>数字闪烁效果</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+	   #container{
+			margin: auto;
+			width: 182px;
+		}
+		.item {
+			width: 66px;
+			height: 110px;
+			margin: 10px;
+			background-color: black;
+			float: left;
+		}
+		#container .item span{
+			display:inline-block;
+			width: 18px;
+			height: 18px;
+			margin: 2px;
+			background-color: black;
+			border-radius: 2px;
+			float:left
+		}	
+		#container .item span.active{
+			background-color: #00FB08;
+		}		
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			// 0,1,2,3,4,5,6,7,8,9数字所形成的方块亮区
+			var number={
+				n0: [0, 1, 2, 3, 5, 6, 8, 9, 11, 12, 13, 14],
+				n1: [2, 5, 8, 11, 14],
+				n2: [0, 1, 2, 5, 6, 7, 8, 9, 12, 13, 14],
+				n3: [0, 1, 2, 5, 6, 7, 8, 11, 12, 13, 14],
+				n4: [0, 2, 3, 5, 6, 7, 8, 11, 14],
+				n5: [0, 1, 2, 3, 6, 7, 8, 11, 12, 13, 14],
+				n6: [0, 1, 2, 3, 6, 7, 8, 9, 11, 12, 13, 14],
+				n7: [0, 1, 2, 5, 8, 11, 14],
+				n8: [0, 1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14],
+				n9: [0, 1, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14]
+			}
+	
+			var list=document.getElementById('container').getElementsByTagName('div');
+			var cell=list[0].getElementsByTagName('span');
+			
+			//打印数字对应亮点的函数
+			function printNum(elements,num){
+				var elements=elements || [];
+				for(var i=0,len=elements.length;i<len;i++){
+					elements[i].className='';
+				}
+				//通过eval函数获取number对应属性的长度
+				var lenl=eval('number.n'+num+'.length');
+				//var lenl=(new Function('return number.n'+num+'.length'))();
+				
+				for(var i=0;i<lenl;i++){
+				
+					//获取number属性数组值相对的点
+					var index=eval('number.n'+num+'['+i+']');
+					elements[index].className='active';
+				}
+			}
+			function run(number){
+				var nun=number,nums=number.toString();	
+				
+				//将NUM变成数组，判断长度		
+				var  arr=nums.split("");
+				//数字小于两位时，前面加0
+				arr.length<2 && arr.unshift(0);
+				for(var i=0;i<arr.length;i++){
+					var element=list[i].getElementsByTagName('span');
+					printNum(element,arr[i]);
+				}
+				NUM!=0 ? NUM-- : clearInterval(timer);
+			}
+			
+			var NUM=99;
+			var timer=setInterval(function(){
+				run(NUM);
+			},100);
+		}
+	</script>
 </head>
-<style>
-    div{width:400px; margin:0 auto;}
-    .text{width:50px;border:1px solid #ccc;background:#f0f0f0;font-family:inherit;padding:3px;}
-    strong{padding:0 10px;}
-    #btn{margin-left: 20px;}
-    span{padding-left:15px;}
-</style>
-<script>
-    window.onload=function(){
-        var textInput = document.getElementsByTagName("input");
-        var valueSpan = document.getElementsByTagName("span")[0];
-        for (var i = 0; i < textInput.length - 1; i++)
-        {
-            textInput[i].onkeyup = function ()
-            {
-                this.value = this.value.replace(/[^\d]/,"")
-            }
-        }
-        textInput[2].onclick = function ()
-        {
-            (textInput[0].value == "" || textInput[1].value == "") ?
-                    alert("输入栏不能为空") :
-                    valueSpan.innerHTML = Math.max(parseInt(textInput[0].value), parseInt(textInput[1].value));
-        }
-    }
-</script>
 <body>
-    <div>
-        <input type="text" class="text" /><strong>vs</strong><input type="text" class="text" /><input id="btn" type="button" value="较大的数字为" /><span></span>
-    </div>
+	<center><h2>数字闪烁效果</h2></center>
+	<div id='container'>
+		<!-- 1 -->
+		<div class="item">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<!-- 2 -->
+		<div class="item">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
 </body>
 </html>

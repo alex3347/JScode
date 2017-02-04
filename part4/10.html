@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="UTF-8">
+		<title>封装CSS属性函数</title>
+		<style type="text/css">
+			div{width:270px;height:40px;background:#9ACFB1;border:1px solid #D8E8FF;margin:40px auto 0;}
+			input{border:0;cursor:pointer;font-weight:700;background:#D8E8FF;padding:2px 4px;margin:10px 0 0 10px;}	
+		</style>
+	</head>
+	<script type="text/javascript">
+			function css(obj,attr,val){
+				switch(arguments.length){
+					case 2:
+						if(typeof arguments[1]=="object"){
+							for (var i in attr) {
+								obj.style[i]=attr[i];
+							}
+						}else{
+								return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj,null)[attr];
+							}
+						break;
+					case 3:
+						obj.style[attr]=val;
+						break;
+					default:
+					alert("参数设置有误，请参照文档")
+				}
+			}
+		window.onload=function(){
+			var container = document.getElementsByTagName("div")[0];
+			var aInput = container.getElementsByTagName("input");
+			aInput[0].onclick = function (){
+				alert("width: " + css(container, "width") + "\nheight: " + css(container, "height") + "\nbackground-color: " + css(container, "backgroundColor"))
+			};
+			aInput[1].onclick = function ()
+			{
+				css(container, {width: "300px", height: "60px", borderColor: "#f60", backgroundColor: "#fef4eb"});
+				for (i = 0; i < aInput.length; i++) css(aInput[i], "backgroundColor", "#f60")
+			}
+			aInput[2].onclick = function ()
+			{
+				css(container, {width: "270px", height: "40px", borderColor: "#D8E8FF", backgroundColor: "#9ACFB1"});
+				for (i = 0; i < aInput.length; i++) css(aInput[i], "backgroundColor", "#D8E8FF")	
+			}
+		}
+	</script>
+	<body>
+		<div>
+			<input type="button" value="获取CSS" />
+			<input type="button" value="改变CSS" />
+			<input type="button" value="重置CSS" />
+		</div>
+	</body>
+</html>

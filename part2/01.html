@@ -2,20 +2,44 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <title>点击DIV，显示其innerHTML</title>
+    <title>控制DIV属性</title>
 </head>
 <style>
-    #editArea{width:300px; margin:20px auto;border:1px solid #0f0f0f;cursor:pointer;}
+    div{margin:0 auto;}
+    #btnBar{width:250px;height:30px;}
+    #divEdit{width:100px;height:100px;background-color: #4cae4c}
 </style>
 <script>
     window.onload=function(){
         var $=function(id){return document.getElementById(id);}
-        $("editArea").onclick=function(){
-            alert(this.innerHTML);
+        var divEdit=$("divEdit");
+        $("btnWidth").onclick=function(){
+            var divEditValue=divEdit.offsetWidth;
+            divEdit.style.width=divEditValue+20+"px";
+        }
+        $("btnHeight").onclick=function(){
+            var divEditValue=divEdit.offsetHeight;
+            divEdit.style.height=divEditValue+20+"px";
+        }
+        $("btnColor").onclick=function(){
+            divEdit.style.backgroundColor="#e4393c";
+        }
+        $("btnInvisible").onclick=function(){
+            divEdit.style.display="none";
+        }
+        $("btnReset").onclick=function(){
+            divEdit.style.cssText="";
         }
     }
 </script>
 <body>
-    <div id="editArea">【加入企业还是留在高校？】人工智能人才如今面临两难。“我连自己的研究生都留不住，”华盛顿大学的佩德罗•多明戈斯教授说，他是机器学习领域的专家，连他自己也收到了科技公司伸出的橄榄枝，“学生还没毕业，那些公司就想把他们聘走</div>
+    <div id="btnBar">
+        <input id="btnWidth" type="button" value="变宽">
+        <input id="btnHeight" type="button" value="变高">
+        <input id="btnColor" type="button" value="变色">
+        <input id="btnInvisible" type="button" value="隐藏">
+        <input id="btnReset" type="button" value="重置">
+    </div>
+    <div id="divEdit"></div>
 </body>
 </html>

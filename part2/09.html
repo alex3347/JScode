@@ -2,47 +2,20 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <title>鼠标移动，显示图标</title>
+    <title>点击DIV，显示其innerHTML</title>
 </head>
 <style>
-    *{margin: 0;padding: 0;}
-    #touchArea{width:405px;margin:10px auto 0;}
-    ul{list-style: none;}
-    li{width:128px;height:131px;margin: 0 0 5px 5px;float: left;border:1px solid #8c8c8c;border-radius: 5%;cursor:pointer;}
-    li strong{width:128px;height:131px;display: block;line-height: 131px;text-align: center;}
-    li img{display: none;}
-    li.current img{display:block;}
-    li.current strong{display: none;}
+    #editArea{width:300px; margin:20px auto;border:1px solid #0f0f0f;cursor:pointer;}
 </style>
 <script>
     window.onload=function(){
-        var arrayImg=document.getElementsByTagName("li");
-        var arrayStrong=document.getElementsByTagName("strong");
-        var arrayBackground=["#F8D8CB","#F9D6B0","#447155","#85904E","#FBDD3F","#8DB6B7","#F2F1F5","#3182B1","#6CAED0"];
-        for(var i=0;i<arrayImg.length;i++){
-            arrayStrong[i].style.backgroundColor=arrayBackground[i];
-            arrayImg[i].onmouseover=function(){
-                this.className="current";
-            }
-            arrayImg[i].onmouseout=function(){
-                this.removeAttribute("class");
-            }
+        var $=function(id){return document.getElementById(id);}
+        $("editArea").onclick=function(){
+            alert(this.innerHTML);
         }
     }
 </script>
 <body>
-<div id="touchArea">
-    <ul>
-        <li><strong>BMW</strong><img src="img/1.jpg"></li>
-        <li><strong>Alfa Romeo</strong><img src="img/2.jpg"></li>
-        <li><strong>Skoda</strong><img src="img/3.jpg"></li>
-        <li><strong>Volkswagen</strong><img src="img/4.jpg"></li>
-        <li><strong>Saab</strong><img src="img/5.jpg"></li>
-        <li><strong>Lamborghini</strong><img src="img/6.jpg"></li>
-        <li><strong>Porsche</strong><img src="img/7.jpg"></li>
-        <li><strong>Peugeot</strong><img src="img/8.jpg"></li>
-        <li><strong>Mercedes</strong><img src="img/9.jpg"></li>
-    </ul>
-</div>
+    <div id="editArea">【加入企业还是留在高校？】人工智能人才如今面临两难。“我连自己的研究生都留不住，”华盛顿大学的佩德罗•多明戈斯教授说，他是机器学习领域的专家，连他自己也收到了科技公司伸出的橄榄枝，“学生还没毕业，那些公司就想把他们聘走</div>
 </body>
 </html>

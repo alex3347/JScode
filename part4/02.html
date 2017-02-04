@@ -1,90 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-
-	<head>
-		<meta charset="UTF-8">
-  		<link rel="stylesheet" href="css/02.css" type="text/css"/>
-		<title>下拉菜单延时消失</title>
-	</head>
-	<script>
-		window.onload=function(){
-			var siteMap=document.getElementById("site_map");
-			siteMap.onmouseover=function(){
-				document.getElementById("sm_dropdown").style.display = "block";				
-			}
-			siteMap.onmouseout=function(){
-				var hide=function(){
-					document.getElementById("sm_dropdown").style.display = "none";
-				}
-				setTimeout(hide,3000);				
-			}
-		}	
-	</script>
-	<body>
-    <div id="top">
-	  <div id="top_bar">
-		<img src="images/star.jpg"/>
-		<a href="javascript:void(0)">收藏X东</a>
-		<ul class="rt">
-			<li>
-				您好！欢迎来到X东！
-				<a href="#">[登录]</a>
-				<a href="#">[免费注册]</a>
-			</li>
-			<li>
-				<b></b>
-				<a href="#">我的订单</a>
-			</li>
-			<li id="vip">
-				<b></b>
-				<a href="#">会员俱乐部</a>
-			</li>
-			<li id="dakehu">
-				<b></b>
-				<a href="#">企业频道</a>
-			</li>
-			<li id="app_jd">
-				<b></b>
-				<span><a href="#">手机X东</a></span>
-			</li>
-			<li id="customer_service">
-				<b></b>
-				<a href="#">客户服务</a>
-			</li>
-			<li id="site_map">
-				<b></b>
-				<a href="#">网站导航</a>
-				<div id="sm_dropdown" class="top_bar_dropdown">
-					<h3>特色栏目</h3>
-					<ul>
-						<li><a href="#">X东通信</a></li>
-						<li><a href="#">校园之星</a></li>
-						<li><a href="#">视频购物</a></li>
-						<li><a href="#">X东社区</a></li>
-						<li><a href="#">在线读书</a></li>
-						<li><a href="#">装机大师</a></li>
-						<li><a href="#">X东 E 卡</a></li>
-						<li><a href="#">家装城</a></li>
-						<li><a href="#">搭配购</a></li>
-						<li><a href="#">我喜欢</a></li>
-						<li><a href="#">游戏社区</a></li>
-					</ul>
-					<div class="clr"></div>
-					<h3>企业服务</h3>
-					<ul>
-						<li><a href="#">企业采购</a></li>
-						<li><a href="#">办公直通车</a></li>
-					</ul>
-					<div class="clr"></div>
-					<h3>旗下网站</h3>
-					<ul>
-						<li><a href="#">English Site</a></li>
-					</ul>
-				</div>
-			</li>
-		</ul>
-	</div>
-  </div>
-	</body>
-
+<head>
+    <meta charset="UTF-8">
+    <title>比较大小</title>
+</head>
+<style>
+    div{width:400px; margin:0 auto;}
+    .text{width:50px;border:1px solid #ccc;background:#f0f0f0;font-family:inherit;padding:3px;}
+    strong{padding:0 10px;}
+    #btn{margin-left: 20px;}
+    span{padding-left:15px;}
+</style>
+<script>
+    window.onload=function(){
+        var textInput = document.getElementsByTagName("input");
+        var valueSpan = document.getElementsByTagName("span")[0];
+        for (var i = 0; i < textInput.length - 1; i++)
+        {
+            textInput[i].onkeyup = function ()
+            {
+                this.value = this.value.replace(/[^\d]/,"")
+            }
+        }
+        textInput[2].onclick = function ()
+        {
+            (textInput[0].value == "" || textInput[1].value == "") ?
+                    alert("输入栏不能为空") :
+                    valueSpan.innerHTML = Math.max(parseInt(textInput[0].value), parseInt(textInput[1].value));
+        }
+    }
+</script>
+<body>
+    <div>
+        <input type="text" class="text" /><strong>vs</strong><input type="text" class="text" /><input id="btn" type="button" value="较大的数字为" /><span></span>
+    </div>
+</body>
 </html>

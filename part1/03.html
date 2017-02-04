@@ -1,26 +1,84 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-    <meta charset="UTF-8">
-    <title>函数接收参数并弹出</title>
-</head>
-<style>
-    div{width:300px; margin:0 auto;}
-</style>
-<script>
-    window.onload=function(){
-        var $=function(id){return document.getElementById(id);}
-        $("btn").onclick=function(){
-            alert($("cityName").value);
-            alert($("cityProper").value);
-        }
-    }
-</script>
-<body>
-    <div id="editArea">
-        <input id="cityName" type="text" value="上海市">
-        <input id="cityProper" type="text" value="浦东新区">
-        <input id="btn" type="button" value="传参">
-    </div>
-</body>
+<html>
+ <head>
+  <meta charset="UTF-8"/>
+  <title>不限层级的select列表</title>
+  <style type="text/css">
+	*{margin:0; padding:0;}
+	center{margin:30px 0 0;}
+  </style>
+ </head>
+
+ <body>
+ 	<center>
+	  <h2>不限层级的select列表</h2>
+	  <div id="productList">
+	  </div>
+ 	</center>
+  <script>
+	//可能从服务器获取到产品的列表(深度未知)
+	var plist = [
+		{"pno":10,"pname":"大家电","children":[
+			{"pno":1010,"pname":"冰箱","children":[
+				{"pno":101010,"pname":"单开门"},
+				{"pno":101020,"pname":"双开门"},
+				{"pno":101030,"pname":"三开门","children":[
+					{"pno":10103010,"pname":"国产三开门"},
+					{"pno":10103010,"pname":"进口三开门"},
+					{"pno":10103010,"pname":"平行进口三开门"}
+				]}
+			]},
+			{"pno":1020,"pname":"洗衣机"},
+			{"pno":1030,"pname":"电视机"}
+		]},
+		{"pno":20,"pname":"小家电","children":[
+			{"pno":2010,"pname":"刮胡刀"},
+			{"pno":2020,"pname":"电饭锅"},
+			{"pno":2030,"pname":"手电筒"}
+		]},
+		{"pno":30,"pname":"书籍"},
+		{"pno":30,"pname":"食品"}
+	];
+  var div = document.querySelector("#productList");
+
+  function createSelect(plist){
+	//创建select,并根据数据添加option
+	var select = document.createElement("select");
+	var option = new Option("—请选择—",-1);
+	select.add(option);
+	for(var i=0; i<plist.length; i++){
+		var p = plist[i];	//产品类别对象
+		var option = new Option(p.pname, p.pno);
+		select.add(option);
+	}
+	//把新建的select添加为div的子元素
+	div.appendChild(select);
+
+	//为select绑定选项改变事件的处理方法
+	select.onchange = function(){
+		//只要用户选择了某项，其后的select都应该删除
+		while(this.nextSibling){
+			div.removeChild(this.nextSibling);
+		}
+		if(this.selectedIndex > 0){
+			var children = plist[this.selectedIndex-1].children;
+			if(children){	//当前选定的类别下有子类别
+				createSelect(children); //创建一个新的select
+			}			
+		}
+	};
+  }
+	/*				plist
+	0   -请选择-	
+	1   大家电		0
+	2   小家电		1
+	3   书籍		2
+	4   食品	    3
+	*/
+
+	
+	createSelect(plist);
+	
+  </script>
+ </body>
 </html>

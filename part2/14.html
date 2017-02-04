@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>通过传递参数，改变DIV的属性</title>
+</head>
+<style>
+    #inputArea{width:30%;margin:0 auto;}
+    ul{list-style: none;}
+    li{margin-bottom: 5px;}
+    #btn{margin-left: 65px;}
+    #editArea{margin:0 auto;width:280px;height:280px;background-color: #5cb85c;}
+</style>
+<script>
+    window.onload=function(){
+        var $=function(id){return document.getElementById(id);}
+        $("btn").onclick=function(){
+           $("editArea").style[$("propertyName").value]=$("propertyValue").value;
+        }
+        $("btnReset").onclick=function () {
+           $("editArea").removeAttribute("style");
+        }
+    }
+</script>
+<body>
+<div id="inputArea">
+    <ul>
+        <li>
+            <span>属性名：</span><input id="propertyName" type="text" value="background-color">
+        </li>
+        <li>
+            <span>属性值：</span><input id="propertyValue" type="text" value="#e4393c">
+        </li>
+        <li>
+            <input id="btn" type="button" value="确定">
+            <input id="btnReset" type="button" value="重置">
+        </li>
+    </ul>
+</div>
+<div id="editArea"></div>
+</body>
+</html>

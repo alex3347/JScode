@@ -1,63 +1,42 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-
-	<head>
-		<meta charset="UTF-8">
-		<title>倒计时</title>
-	</head>
-	<style>
-		* {
-			padding: 0;
-			margin: 0;
-		}
-		
-		div {
-			margin: 0 auto;
-			width: 150px;
-			height: 20px;
-			line-height: 20px;
-			border: 1px solid #CCCCCC;
-			margin-top: 40px;
-			padding: 6px 0;
-			text-align: center;
-		}
-		
-		span {
-			width: 20px;
-			height: 20px;
-			display: inline-block;
-		}
-	</style>
-	<script>
-		window.onload = function() {
-			var oSpan = document.getElementsByTagName("span");
-			var time=null;
-			function getTimes() {
-					oSpan[2].innerHTML = oSpan[2].innerHTML-1;
-					if(oSpan[2].innerHTML==0&&oSpan[1].innerHTML==1&&oSpan[0].innerHTML==0){
-						oSpan[1].innerHTML = oSpan[1].innerHTML-1;
-						clearInterval(time);
-						return;
-					}
-					if(oSpan[2].innerHTML==0){
-						oSpan[2].innerHTML=9;
-						oSpan[1].innerHTML = oSpan[1].innerHTML-1;
-					}
-					if(oSpan[1].innerHTML==0){
-						oSpan[1].innerHTML=59;
-						oSpan[0].innerHTML = oSpan[0].innerHTML-1;
-					}
-			}
-			getTimes();
-			time=setInterval(getTimes, 100);
-		}
-	</script>
-
-	<body>
-		<div id="clockForm">
-			<span>1</span>：<span>59</span>：<span>9</span>
-		</div>
-		</div>
-	</body>
-
+<head>
+<meta charset="utf-8"/>
+<title>简易计算器</title>
+<link rel="stylesheet" type="text/css" href="css/01.css">
+<script type="text/javascript" src="js/01.js"></script>
+</head>
+<body>
+<div id="calcuator">
+	<div id="calcuCopy">
+		<h3>简易计算器</h3>
+		<span>&copy; <a href="http://www.cnblogs.com/ztoz/" target="_blank">by 夜雨声繁</a></span>
+	</div>
+	<input type="text" id="input-box" value="0" maxlength="21" readonly="readonly" />
+	<div id="btn-list">
+		<div onclick="operator('clear')" class=" btn-30 color-red clear-marginleft">C</div>
+		<div onclick="operator('opposite')" class=" btn-30 color-green">±</div>
+		<div onclick="operator('percent')" class=" btn-30 color-green">%</div>
+		<div onclick="operator('backspace')" class=" btn-70 color-red">←</div>
+		<div onclick="typetoinput('7')" class=" btn-30 clear-marginleft">7</div>
+		<div onclick="typetoinput('8')" class=" btn-30">8</div>
+		<div onclick="typetoinput('9')" class=" btn-30">9</div>
+		<div onclick="operator('plus')" class=" btn-30 color-green">+</div>
+		<div onclick="operator('minus')" class=" btn-30 color-green">-</div>
+		<div onclick="typetoinput('4')" class=" btn-30 clear-marginleft">4</div>
+		<div onclick="typetoinput('5')" class=" btn-30">5</div>
+		<div onclick="typetoinput('6')" class=" btn-30">6</div>
+		<div onclick="operator('multiply')" class=" btn-30 color-green">×</div>
+		<div onclick="operator('divide')" class=" btn-30 color-green">÷</div>
+		<div onclick="typetoinput('1')" class=" btn-30 clear-marginleft">1</div>
+		<div onclick="typetoinput('2')" class=" btn-30">2</div>
+		<div onclick="typetoinput('3')" class=" btn-30">3</div>
+		<div onclick="operator('pow')" class=" btn-30 color-green">×²</div>
+		<div onclick="operator('sqrt')" class=" btn-30 color-green">√</div>
+		<div onclick="typetoinput('0')" class=" btn-70 clear-marginleft">0</div>
+		<div onclick="typetoinput('.')" class=" btn-30">.</div>
+		<div onclick="operator('result')" class=" btn-70 color-red">=</div>
+	</div>
+</div>
+</body>
 </html>

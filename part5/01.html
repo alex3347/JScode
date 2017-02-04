@@ -1,71 +1,30 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html>
 	<head>
 		<meta charset="UTF-8">
-		<title>DIV模拟select控件</title>
-		<style type="text/css">
-			*{margin:0;padding:0;}
-			ul{list-style:none;}
-			#mySelect{position:relative;width:350px;height:36px;margin:10px auto;}
-			#mySelect .box{width:350px;height:34px;}
-			#mySelect form{margin:0 20px 0 0;}
-			#mySelect .select{float:left;color:#fff;background-color:#8C8C8C;width:190px;height:22px;border: 1px solid #000000;cursor:pointer;margin-top:4px;line-height:22px;padding-left:10px;}
-			#mySelect input{float:left;width:80px;height:24px;margin:4px 0 0;}
-			#mySelect ul{position:absolute;top:26px;color:#fff;width:198px;background:#2b2b2b;border:1px solid #fff;display:none;}
-			#mySelect ul.sub{display: block;}
-			#mySelect ul li{height:25px;line-height:24px;cursor:pointer;padding-left:10px;margin-bottom:-1px;border-bottom:1px dotted #fff;}
-			#mySelect ul li.hover{background:#8b8b8b;}
-		</style>
-	</head>
-	<script type="text/javascript">
-		window.onload = function ()
-		{
-			var oSelect = document.getElementsByTagName("span")[0];
-			var oSub = document.getElementsByTagName("ul")[0];
-			var aLi = oSub.getElementsByTagName("li");
-			oSelect.onclick = function (event)
-			{
-				oSub.className=oSub.className=="sub" ? "" : "sub";
-				(event || window.event).cancelBubble = true;//阻止事件冒泡，防止click事件传递到document
-			};
-			
-			for (var i = 0; i < aLi.length; i++)
-			{
-				aLi[i].onmouseover = function ()
-				{
-					this.className = "hover"
-				};
-				aLi[i].onmouseout = function ()
-				{
-					this.className = "";
-				};
-				aLi[i].onclick = function ()
-				{
-					oSelect.innerHTML = this.innerHTML	
-				}
-			}
-			
-			document.onclick = function ()
-			{
-				oSub.className = "";	
-			};
-		};
-	</script>
-	<body>
-		<div id="mySelect">
-		    <div class="box">
-		        <form>
-		            <span class="select">请选择书目</span>        
-		            <input type="button" value="搜索" />
-		        </form>
-		    </div>
-		    <ul>
-		        <li>JS高级程序设计</li> 
-				<li>JS权威指南</li> 
-				<li>CSS权威指南</li> 
-				<li>锋利的JQuery</li> 
-				<li>JS编程艺术</li>
-		    </ul>
-		</div>
-	</body>
+		<title>函数节流throttle</title>
+		<script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>  
+		<script type="text/javascript">
+	        var n=0;
+	        function resizehandler(){
+	            console.log(new Date().getTime());
+	            console.log(++n);
+	        }
+	
+	        function throttle(method,delay){
+	            var timer=null;
+	            return function(){
+	                var context=this, args=arguments;
+	                clearTimeout(timer);
+	                timer=setTimeout(function(){
+	                    method.apply(context,args);//此处参数无用，因为throttle默认无参数
+	                },delay);
+	            }
+	
+	        }
+	        window.onresize=throttle(resizehandler,500);
+    	</script>
+	</head>  
+	<body>  
+	</body> 
 </html>
